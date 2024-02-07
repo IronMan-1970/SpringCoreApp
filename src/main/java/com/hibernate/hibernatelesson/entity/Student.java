@@ -3,17 +3,19 @@ package com.hibernate.hibernatelesson.entity;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Configuration;
 
-@Entity
-@Table(name="student")
+@Entity //обов'язкова анотація після якої звичайний java class перетворюється на entity class яка мапиться в базу данних
+@Table(name="student")//необовязкова анотація (можна визнвчити ім'я таблиці)
 public class Student {
 
 
     // Визначаю поля
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+    @Id //я не впевнений чи ця анотація є обовязковою деякі фреймворки навчилися самі визначати айді
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// по суті ця анотація не обов'язкова проте вона дозволяє всільнитися від потреби визначати айті в ручну і передає всю роботу самій sql де вона методом інкпементації призначає нові айдіхи новим записам
+    @Column(name="id") //необовязкова анотація (мона визнвчити ім'я поля в sql таблиці)
     private int id;
+    @Column(name="first_name") //необовязкова анотація (мона визнвчити ім'я поля в sql таблиці)
     private String name;
+    @Column(name="last_name") //необовязкова анотація (мона визнвчити ім'я поля в sql таблиці)
     private String surname;
     private String email;
 

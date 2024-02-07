@@ -1,5 +1,7 @@
 package com.hibernate.hibernatelesson;
 
+import com.hibernate.hibernatelesson.DAOs.StudentDAO;
+import com.hibernate.hibernatelesson.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +15,23 @@ public class HibernateLessonApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(){
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
      return runner ->{
-         System.out.println("Hello World!");
+        createStudent(studentDAO);
      };
+
+    }
+
+    private void createStudent(StudentDAO studentDAO) {
+
+        // створюємо студента
+        System.out.println("creating student...");
+        Student student = new Student("Pasha-maks","Havryliuk","idi@nakhuj.io");
+        // зберігаємо студєнта
+        System.out.println("Saving student");
+        studentDAO.save(student);
+        //виводими студєнта
+        System.out.println("There is our student!!!!" + student.getId());
 
     }
 }
