@@ -2,9 +2,13 @@ package com.hibernate.hibernatelesson.DAOs;
 
 import com.hibernate.hibernatelesson.entity.Student;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository // дозволяє спрінгу сканувати цей клас, такж додає підтримку для логерізації дждбс помилок
 public class StudentDAOImpl implements StudentDAO{
@@ -27,5 +31,15 @@ public class StudentDAOImpl implements StudentDAO{
     @Override
     public Student findById(Integer id) {
        return entityManager.find(Student.class, id);
+    }
+
+    @Override
+    public List<Student> findAll() {
+        // створити запит
+        TypedQuery theQuery = entityManager.createQuery("FROM Student where name='Vasyl' or email like 'lokh%' order by name asc ", Student.class); // - це JPQL (JPA Query Language) - вона подібна до ск'юл запитів але звертатися треба аме до ентіті класу та його зімнних
+//        TypedQuery theQuery = entityManager.createQuery("FROM Student where surname=:theData", Student.class); - можна вводити данні ззовнішнього джерела а не хардкодінгом
+//        theQuery.setParameter("theData","Havryliuk");
+        // повернути результат запиту
+        return theQuery.getResultList();
     }
 }

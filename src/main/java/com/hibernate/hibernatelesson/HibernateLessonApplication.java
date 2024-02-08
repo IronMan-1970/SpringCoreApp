@@ -17,10 +17,15 @@ public class HibernateLessonApplication {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
      return runner ->{
-        //createStudent(studentDAO);
-         readStudent(studentDAO);
+         //createStudent(studentDAO);
+         // readStudent(studentDAO);
+         queryForStudents(studentDAO);
      };
 
+    }
+
+    private void queryForStudents(StudentDAO studentDAO) {
+        System.out.println("Here is all our studentі!!!! look at this guys: " + studentDAO.findAll());
     }
 
     private void readStudent(StudentDAO studentDAO){
