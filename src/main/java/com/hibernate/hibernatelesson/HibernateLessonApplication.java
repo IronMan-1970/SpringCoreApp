@@ -19,11 +19,36 @@ public class HibernateLessonApplication {
      return runner ->{
          //createStudent(studentDAO);
          // readStudent(studentDAO);
-         queryForStudents(studentDAO);
+         //queryForStudents(studentDAO);
+         //updateStudent(studentDAO);
+         deleteStudent(studentDAO);
      };
 
     }
 
+    private void deleteStudent(StudentDAO studentDAO) {
+    System.out.println("Deleting student id: 4");
+    studentDAO.delete(2);
+    System.out.println("Student deleted");
+    }
+
+    private void updateStudent(StudentDAO studentDAO){
+        //отримуємо студета базовуючись на ай-ді
+        System.out.println("Getting student with Id");
+        Student student = studentDAO.findById(3);
+        System.out.println("There is our student!!!" + student);
+        //Змінюємо його данні
+        System.out.println("Changing student data");
+        student.setSurname("Klopijchuk");
+        //обновляємо студента
+        System.out.println("Updating student....");
+        studentDAO.update(student);
+        //виводимо студента
+        Student student1 = studentDAO.findById(3);
+        System.out.println("There is our student!!!" + student1);
+
+
+    }
     private void queryForStudents(StudentDAO studentDAO) {
         System.out.println("Here is all our studentі!!!! look at this guys: " + studentDAO.findAll());
     }
@@ -53,4 +78,5 @@ public class HibernateLessonApplication {
         System.out.println("There is our student!!!! id: " + student.getId());
 
     }
+
 }
