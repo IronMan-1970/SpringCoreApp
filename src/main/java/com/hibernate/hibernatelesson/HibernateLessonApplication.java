@@ -17,11 +17,11 @@ public class HibernateLessonApplication {
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
      return runner ->{
-         //createStudent(studentDAO);
-         // readStudent(studentDAO);
+         createStudent(studentDAO);
+         //readStudent(studentDAO);
          //queryForStudents(studentDAO);
          //updateStudent(studentDAO);
-         deleteStudent(studentDAO);
+         //deleteStudent(studentDAO);
      };
 
     }
@@ -70,7 +70,7 @@ public class HibernateLessonApplication {
 
         // створюємо студента
         System.out.println("creating student...");
-        Student student = new Student("Pasha-maks","Havryliuk","idi@nakhuj.io");
+        Student student = new Student("Vasyl","Hakman","idi@nakhuj.io");
         // зберігаємо студєнта
         System.out.println("Saving student");
         studentDAO.save(student);

@@ -46,7 +46,10 @@ public class StudentDAOImpl implements StudentDAO{
     @Override
     @Transactional
     public void update(Student student) {
-        //entityManager.merge(student);// по суті мерж це злиття коли змінені поля зі стану детач переписуються в пресітент запис а також він повертає новий об'єкт??????
+        //
+        // 1) через merge
+        entityManager.merge(student);// по суті мерж це злиття коли змінені поля зі стану детач переписуються в пресітент запис а також він повертає новий об'єкт??????
+        // 2) через JPQL скрипт
         int numberOfDeleted = entityManager // в цій змінній збережеться кількість змінених полів
                 .createQuery("UPDATE Student SET email=:theData")
                 .setParameter("theData", "lokh@pidr.com")
@@ -59,8 +62,10 @@ public class StudentDAOImpl implements StudentDAO{
     public void delete(Integer id) {
         //отримую студента
         Student student = entityManager.find(Student.class, id);
-        // видаляю студента
+        // видаляю студентів
+        //1) через remove
         entityManager.remove(student);
+        //2) через JPQL скрипт
         int numOfRows = entityManager
                 .createQuery("DELETE Student WHERE name='Dimitriy'")
                 .executeUpdate();
