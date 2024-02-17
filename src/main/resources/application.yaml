@@ -1,24 +1,5 @@
 spring:
-  #підключаю базу данних через юрл
   datasource:
-    url: jdbc:mysql://localhost:3306/student_tracker
+    url: jdbc:mysql://localhost:3306/students_db
     username: springstudent
     password: Spr1ng$tudent
-  # відключаю банер
-  main:
-    banner-mode: off
-  # Конфігурую JPA/Hibernate для автостворення таблиць
-  jpa:
-    hibernate:
-      ddl-auto: create
-# Ставлю рівень логінга варн щоб в консоль виводило лише помилки та попередження
-logging:
-  level:
-    root: warn
-    # Додаю конфвігураці логінга щоб вивести SQL твердження
-    org:
-      hibernate:
-        SQL: debug
-        orm:
-          jdbc:
-            bind: trace
