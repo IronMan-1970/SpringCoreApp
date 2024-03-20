@@ -1,5 +1,7 @@
 spring:
+  application:
+    name: SpringEmployeeServer
   datasource:
-    url: jdbc:mysql://localhost:3306/students_db
+    url: jdbc:mysql://localhost:3306/employee_directory
     username: springstudent
     password: Spr1ng$tudent
