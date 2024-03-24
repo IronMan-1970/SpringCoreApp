@@ -1,6 +1,5 @@
 package com.havryliuk.springemployeeserver.REST;
 
-import com.havryliuk.springemployeeserver.DAO.EmployeeDAO;
 import com.havryliuk.springemployeeserver.Entityes.Employee;
 import com.havryliuk.springemployeeserver.Services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,7 @@ public class EmployeeRestController {
     }
     @DeleteMapping("/employees/{id}")
     public void deleteById(@PathVariable int id){
+
         employeeService.deleteEmployee(id);
     }
     @PutMapping("/employees")
